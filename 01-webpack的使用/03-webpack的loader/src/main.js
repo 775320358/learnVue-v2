@@ -7,3 +7,6 @@ console.log(mul(20,30));
 import {name,age} from "./js/info.js"
 console.log(name);
 console.log(age);
+
+//3.依赖css文件
+require('./css/normal.css')
