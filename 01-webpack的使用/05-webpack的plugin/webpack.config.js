@@ -1,11 +1,11 @@
 const path = require('path')
 const webpack = require('webpack')
+const htmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, 'dist'), //动态的获取路径
     filename: 'bundle.js',
-    publicPath: 'dist/'
   },
   module: {
     rules: [{
@@ -60,6 +60,9 @@ module.exports = {
     }
   },
   plugins:[
-    new webpack.BannerPlugin('最终版权归qjc所有')
+    new webpack.BannerPlugin('最终版权归qjc所有'),
+    new htmlWebpackPlugin({
+      template:'index.html'
+    })
   ]
 }
