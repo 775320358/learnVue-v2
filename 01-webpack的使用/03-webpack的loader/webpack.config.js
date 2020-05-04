@@ -6,16 +6,21 @@ module.exports = {
     filename: 'bundle.js'
   },
   module: {
-    rules: [{
-      test: /\.css$/,
-      //css-loader只负责将css文件进行加载
-      //style-loader负责将样式添加到dom中
-      //使用多个loader时，是从右向左
-      use: [
-        // {loader: "style-loader"},
-        // {loader: "css-loader"}
-        "style-loader","css-loader"
-      ]
-    }]
+    rules: [
+      {
+        test: /\.css$/,
+        use: [ 'style-loader', 'css-loader' ]
+      },
+      {
+        test: /\.less$/,
+        use: [{
+            loader: "style-loader" // creates style nodes from JS strings
+        }, {
+            loader: "css-loader" // translates CSS into CommonJS
+        }, {
+            loader: "less-loader" // compiles Less to CSS
+        }]
+    }
+    ]
   }
 }
