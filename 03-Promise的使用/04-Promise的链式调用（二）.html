@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // new Promise((reslove, reject) => {
+    //   setTimeout(() => {
+    //     reslove('aaa')
+    //   }, 1000)
+    // }).then(res =>{
+    //   console.log(res,'第一层的十行代码');
+    //   //对结果进行第一次处理
+    //   return new Promise((reslove) => {
+    //     reslove(res + '111')
+    //   })
+    // }).then(res => {
+    //   console.log(res,'第二层的十行代码');
+    //   //对结果进行第二次处理
+    //   return new Promise((reslove) => {
+    //     reslove(res + '222')
+    //   })
+    // }).then(res => {
+    //   console.log(res,'第三层的十行代码');
+    //   //对结果进行第三次处理
+    //   return new Promise((reslove) => {
+    //     reslove(res + '111')
+    //   })
+    // })
+
+    // new Promise((reslove, reject) => {
+    //   setTimeout(() => {
+    //     reslove('aaa')
+    //   }, 1000)
+    // }).then(res =>{
+    //   console.log(res,'第一层的十行代码');
+    //   //对结果进行第一次处理
+    //   return Promise.resolve(res  + '111')
+    // }).then(res => {
+    //   console.log(res,'第二层的十行代码');
+    //   //对结果进行第二次处理
+    //   return Promise.resolve(res + '222')
+    // }).then(res => {
+    //   console.log(res,'第三层的十行代码');
+    //   //对结果进行第三次处理
+    //   return Promise.resolve(res + '333')
+    // })
+
+    //Promise.reslove简写
+    new Promise((reslove, reject) => {
+      setTimeout(() => {
+        reslove('aaa')
+      }, 1000)
+    }).then(res =>{
+      console.log(res,'第一层的十行代码');
+      //对结果进行第一次处理
+      return res  + '111'
+    }).then(res => {
+      console.log(res,'第二层的十行代码');
+      //对结果进行第二次处理
+      return res + '222'
+    }).then(res => {
+      console.log(res,'第三层的十行代码');
+      //对结果进行第三次处理
+      return res + '333'
+    })
+
+    new Promise((reslove, reject) => {
+      setTimeout(() => {
+        reslove('aaa')
+      }, 1000)
+    }).then(res =>{
+      console.log(res,'第一层的十行代码');
+      //对结果进行第一次处理
+      return Promise.reject('error')
+    }).then(res => {
+      console.log(res,'第二层的十行代码');
+      //对结果进行第二次处理
+      return Promise.resolve(res + '222')
+    }).then(res => {
+      console.log(res,'第三层的十行代码');
+      //对结果进行第三次处理
+      return Promise.resolve(res + '333')
+    }).catch(err => {
+      console.log(err);
+    })
+
+    new Promise((reslove, reject) => {
+      setTimeout(() => {
+        reslove('aaa')
+      }, 1000)
+    }).then(res =>{
+      console.log(res,'第一层的十行代码');
+      //对结果进行第一次处理
+      throw 'error'
+    }).then(res => {
+      console.log(res,'第二层的十行代码');
+      //对结果进行第二次处理
+      return Promise.resolve(res + '222')
+    }).then(res => {
+      console.log(res,'第三层的十行代码');
+      //对结果进行第三次处理
+      return Promise.resolve(res + '333')
+    }).catch(err => {
+      console.log(err);
+    })
+  </script>
+</body>
+
+</html>
