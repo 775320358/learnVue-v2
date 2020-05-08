@@ -28,7 +28,12 @@ const store = new Vuex.Store({
         name: 'juice',
         age: 10
       },
-    ]
+    ],
+    info: {
+      name:'kobe',
+      age:42,
+      height:1.98
+    }
   },
   mutations: {
     //方法
@@ -43,6 +48,13 @@ const store = new Vuex.Store({
     },
     addStudent(state,stu) {
       state.students.push(stu)
+    },
+    updateInfo(state) {
+      // state.info.name = 'qjc'
+      // state.info['address'] = '洛杉矶'   //做不到响应式
+      // Vue.set(state.info, 'address', '洛杉矶')
+      // delete state.info.age   //做不到响应式
+      Vue.delete(state.info, 'age')
     }
   },
   actions: {
