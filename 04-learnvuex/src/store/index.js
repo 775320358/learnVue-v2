@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {INCREMENT, DECREMENT, INCREMENTCOUNT, ADDSTUDENT, UPDATEINFO} from './mutations-types'
+import {INCREMENT, DECREMENT, INCREMENTCOUNT, ADDSTUDENT, UPDATEINFO, AUPDATEINFO} from './mutations-types'
 
 
 //1.安装插件
@@ -52,15 +52,24 @@ const store = new Vuex.Store({
       state.students.push(stu)
     },
     [UPDATEINFO](state) {
-      // state.info.name = 'qjc'
+      state.info.name = 'qjc'
       // state.info['address'] = '洛杉矶'   //做不到响应式
       // Vue.set(state.info, 'address', '洛杉矶')
       // delete state.info.age   //做不到响应式
-      Vue.delete(state.info, 'age')
+      // Vue.delete(state.info, 'age')
     }
   },
   actions: {
-
+    //context:上下文
+    [AUPDATEINFO](context, payload) {
+      return new Promise((reslove, reject) => {
+        setTimeout(() => {
+          context.commit(UPDATEINFO)
+          console.log(payload);
+          reslove('111111')
+        }, 1000)
+      })
+    }
   },
   getters: {
     powerCounter(state) {
