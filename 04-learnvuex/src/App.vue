@@ -4,6 +4,11 @@
     <h2>{{$store.state.counter}}</h2>
     <button @click="addition">+</button>
     <button @click="subtration">-</button>
+    <h2>-----vuex getters-------</h2>
+    <h2>{{$store.getters.powerCounter}}</h2>
+    <h2>{{$store.getters.more20stu}}</h2>
+    <h2>{{$store.getters.more20stuLength}}</h2>
+    <h2>{{$store.getters.moreAgeStu(8)}}</h2>
     <h2>---Hello---</h2>
     <hello-vuex></hello-vuex>
   </div>

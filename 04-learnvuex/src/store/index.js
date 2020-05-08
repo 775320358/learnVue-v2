@@ -7,7 +7,28 @@ Vue.use(Vuex)
 //2.创建对象
 const store = new Vuex.Store({
   state: {
-    counter:1000
+    counter: 1000,
+    students: [{
+        id: 110,
+        name: 'why',
+        age: 18
+      },
+      {
+        id: 111,
+        name: 'kobe',
+        age: 40
+      },
+      {
+        id: 112,
+        name: 'james',
+        age: 36
+      },
+      {
+        id: 113,
+        name: 'juice',
+        age: 10
+      },
+    ]
   },
   mutations: {
     //方法
@@ -22,7 +43,23 @@ const store = new Vuex.Store({
 
   },
   getters: {
-
+    powerCounter(state) {
+      return state.counter * state.counter
+    },
+    more20stu(state) {
+      return state.students.filter(s => s.age > 20)
+    },
+    more20stuLength(state, getters) {
+      return getters.more20stu.length
+    },
+    moreAgeStu(state, getters) {
+      // return function(age) {
+      //   return state.students.filter(s => s.age > age)
+      // }
+      return age => {
+        return state.students.filter(s => s.age > age)
+      }
+    }
   },
   modules: {
 
