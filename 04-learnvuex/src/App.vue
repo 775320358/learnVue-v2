@@ -2,8 +2,8 @@
   <div id="app">
     <h2>-----App组件----</h2>
     <h2>{{$store.state.counter}}</h2>
-    <button @click="$store.state.counter++">+</button>
-    <button @click="$store.state.counter--">-</button>
+    <button @click="addition">+</button>
+    <button @click="subtration">-</button>
     <h2>---Hello---</h2>
     <hello-vuex></hello-vuex>
   </div>
@@ -21,6 +21,14 @@ export default {
       message:'我是App组件',
     }
   },
+  methods: {
+    addition() {
+      this.$store.commit('increment')
+    },
+    subtration() {
+      this.$store.commit('decrement')
+    }
+  }
 }
 </script>
 
