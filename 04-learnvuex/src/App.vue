@@ -22,6 +22,7 @@
 
 <script>
 import HelloVuex from './components/HelloVuex'
+import {INCREMENT, INCREMENTCOUNT, DECREMENT, ADDSTUDENT, UPDATEINFO} from './store/mutations-types';
 export default {
   name: 'App',
   components: {
@@ -34,10 +35,10 @@ export default {
   },
   methods: {
     addition() {
-      this.$store.commit('increment')
+      this.$store.commit(INCREMENT)
     },
     subtration() {
-      this.$store.commit('decrement')
+      this.$store.commit(DECREMENT)
     },
     addCount(count) {
       //payload ：负载
@@ -45,16 +46,16 @@ export default {
       // this.$store.commit('incrementCount',count)
       //2.特殊的提交风格
       this.$store.commit({
-        type: 'incrementCount',
+        type: INCREMENTCOUNT,
         count
       })
     },
     addStudent() {
       const stu = { id: 114, name: 'Allen', age: 45 }
-      this.$store.commit('addStudent', stu)
+      this.$store.commit(ADDSTUDENT, stu)
     },
     updateInfo() {
-      this.$store.commit('updateInfo')
+      this.$store.commit(UPDATEINFO)
     }
   }
 }

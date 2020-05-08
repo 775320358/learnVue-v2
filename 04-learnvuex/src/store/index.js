@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import {INCREMENT, DECREMENT, INCREMENTCOUNT, ADDSTUDENT, UPDATEINFO} from './mutations-types'
+
 
 //1.安装插件
 Vue.use(Vuex)
@@ -37,19 +39,19 @@ const store = new Vuex.Store({
   },
   mutations: {
     //方法
-    increment(state) {
+    [INCREMENT](state) {
       state.counter++
     },
-    decrement(state) {
+    [DECREMENT](state) {
       state.counter--
     },
-    incrementCount(state, payload){
+    [INCREMENTCOUNT](state, payload){
       state.counter += payload.count
     },
-    addStudent(state,stu) {
+    [ADDSTUDENT](state,stu) {
       state.students.push(stu)
     },
-    updateInfo(state) {
+    [UPDATEINFO](state) {
       // state.info.name = 'qjc'
       // state.info['address'] = '洛杉矶'   //做不到响应式
       // Vue.set(state.info, 'address', '洛杉矶')
