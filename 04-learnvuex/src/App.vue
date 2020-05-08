@@ -1,5 +1,13 @@
 <template>
   <div id="app">
+    <h2>----------modules中的内容 -----------</h2>
+    <h2>{{$store.state.a.name}}</h2>
+    <button @click="updateName">修改名字</button>
+    <h2>{{$store.getters.fullName}}</h2>
+    <h2>{{$store.getters.fullName2}}</h2>
+    <h2>{{$store.getters.fullName3}}</h2>
+    <button @click="asyncUpdateName">异步修改</button>
+
     <h2>----------info对象的内容是否是响应式的 -----------</h2>
     <h2>{{$store.state.info}}</h2>
     <button @click="updateInfo">修改信息</button>
@@ -22,7 +30,16 @@
 
 <script>
 import HelloVuex from './components/HelloVuex'
-import {INCREMENT, INCREMENTCOUNT, DECREMENT, ADDSTUDENT, UPDATEINFO, AUPDATEINFO} from './store/mutations-types';
+import {
+  INCREMENT,
+  INCREMENTCOUNT,
+  DECREMENT,
+  ADDSTUDENT,
+  UPDATEINFO,
+  AUPDATEINFO,
+  UPDATENAME,
+  AUPDATENAME
+} from './store/mutations-types'
 export default {
   name: 'App',
   components: {
@@ -56,12 +73,16 @@ export default {
     },
     updateInfo() {
       // this.$store.commit(UPDATEINFO)
-      this.$store
-      .dispatch(AUPDATEINFO, '我是携带的信息')
-      .then(res => {
-        console.log('里面完成了提交');        
-        console.log(res);
+      this.$store.dispatch(AUPDATEINFO, '我是携带的信息').then(res => {
+        console.log('里面完成了提交')
+        console.log(res)
       })
+    },
+    updateName() {
+      this.$store.commit(UPDATENAME,'lisi')
+    },
+    asyncUpdateName() {
+      this.$store.dispatch(AUPDATENAME)
     }
   }
 }

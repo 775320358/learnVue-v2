@@ -1,12 +1,53 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {INCREMENT, DECREMENT, INCREMENTCOUNT, ADDSTUDENT, UPDATEINFO, AUPDATEINFO} from './mutations-types'
+import {
+  INCREMENT,
+  DECREMENT,
+  INCREMENTCOUNT,
+  ADDSTUDENT,
+  UPDATEINFO,
+  AUPDATEINFO,
+  UPDATENAME,
+  AUPDATENAME
+} from './mutations-types'
 
 
 //1.安装插件
 Vue.use(Vuex)
 
 //2.创建对象
+const moduleA = {
+  state: {
+    name:'zhangsan'
+  },
+  mutations: {
+    [UPDATENAME](state, payload) {
+      state.name = payload
+    }
+  },
+  actions: {
+    [AUPDATENAME](context) {
+      console.log(context)
+      console.log(context.rootGetters)
+      console.log(context.rootState)      
+      setTimeout(() => {
+        context.commit(UPDATENAME, 'wangwu')
+      }, 1000)
+    }
+  },
+  getters: {
+    fullName(state) {
+      return state.name += '111'
+    },
+    fullName2(state, getters){
+      return getters.fullName + '222'
+    },
+    fullName3(state, getters, rootState) {
+      return getters.fullName2 + rootState.counter
+    }
+  },
+}
+
 const store = new Vuex.Store({
   state: {
     counter: 1000,
@@ -32,9 +73,9 @@ const store = new Vuex.Store({
       },
     ],
     info: {
-      name:'kobe',
-      age:42,
-      height:1.98
+      name: 'kobe',
+      age: 42,
+      height: 1.98
     }
   },
   mutations: {
@@ -45,10 +86,10 @@ const store = new Vuex.Store({
     [DECREMENT](state) {
       state.counter--
     },
-    [INCREMENTCOUNT](state, payload){
+    [INCREMENTCOUNT](state, payload) {
       state.counter += payload.count
     },
-    [ADDSTUDENT](state,stu) {
+    [ADDSTUDENT](state, stu) {
       state.students.push(stu)
     },
     [UPDATEINFO](state) {
@@ -60,6 +101,7 @@ const store = new Vuex.Store({
     }
   },
   actions: {
+    //异步操作
     //context:上下文
     [AUPDATEINFO](context, payload) {
       return new Promise((reslove, reject) => {
@@ -91,7 +133,7 @@ const store = new Vuex.Store({
     }
   },
   modules: {
-
+    a:moduleA
   }
 })
 
