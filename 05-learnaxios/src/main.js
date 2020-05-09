@@ -98,7 +98,7 @@ import {
 // })
 
 requestc({
-  url:'/image'
+  url:'/base64/SFRUUEJJTiBpcyBhd2Vzb21l'
 }).then(res => {
   console.log(res);
 }).catch(err => {
